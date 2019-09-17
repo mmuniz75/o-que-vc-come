@@ -14,7 +14,7 @@ class ChemicalService:
         chemical = ChemicalModel(chemical_id, name)
         try:
             chemical.save_chemical()
-        except:
+        except 'Exception':
             return {"message": "Error ao salvar quimico"}, 500
         return chemical.json(), 201
 
@@ -26,7 +26,6 @@ class ChemicalService:
 
         try:
             chemical.update_chemical(name)
-        except:
+        except 'Exception':
             return {"message": "Error ao alterar quimico"}, 500
         return chemical.json(), 200
-

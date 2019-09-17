@@ -1,6 +1,8 @@
 from sql_alchemy import banco
 
+
 class ChemicalModel(banco.Model):
+
     __tablename__ = 'chemical'
 
     id = banco.Column(banco.Integer, primary_key=True)
@@ -19,8 +21,8 @@ class ChemicalModel(banco.Model):
         }
 
     @classmethod
-    def find_chemical(cls, id):
-        chemical = cls.query.filter_by(id=id).first()
+    def find_chemical(cls, chemical_id):
+        chemical = cls.query.filter_by(id=chemical_id).first()
         if chemical:
             return chemical
         return None

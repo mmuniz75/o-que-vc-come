@@ -12,9 +12,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
 
-@app.route('/chemicals/<int:chemical_id>', methods=['PUT'])
-def chemical_id(chemical_id):
-    return ChemicalService.update_chemical(chemical_id, request.json['name'])
+@app.route('/chemicals/<int:param_id>', methods=['PUT'])
+def chemical_id(param_id):
+    return ChemicalService.update_chemical(param_id, request.json['name'])
 
 
 @app.route('/chemicals', methods=['GET', 'POST'])
@@ -32,6 +32,8 @@ def create_db():
 
 if __name__ == '__main__':
     banco.init_app(app)
-    #app.run(host='0.0.0.0', port=5000, debug=True)
-    http_server = WSGIServer(('',5000),app)
-    http_server.serve_forever()
+    if 'OQVC_DEVELOP' in os.environ:
+        app.run(host='0.0.0.0', port=5000, debug=True)
+    else:
+        http_server = WSGIServer(('', 5000), app)
+        http_server.serve_forever()
