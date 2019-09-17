@@ -1,4 +1,9 @@
 from sql_alchemy import banco
+from sqlalchemy.sql.functions import ReturnTypeFromArgs
+
+
+class unaccent(ReturnTypeFromArgs):
+    pass
 
 
 class ChemicalModel(banco.Model):
@@ -28,7 +33,7 @@ class ChemicalModel(banco.Model):
 
     @classmethod
     def find_chemicals(cls):
-        chemicals = cls.query.order_by(ChemicalModel.name).all()
+        chemicals = cls.query.order_by(unaccent(ChemicalModel.name)).all()
         if chemicals:
             return [chemical.json() for chemical in chemicals]
         return None
