@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "aa538a84-bab2-4e39-8ecb-1be986ce089f",
+		"name": "CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create chemicals",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Ácido Fosfórico\" \n}"
+				},
+				"url": "{{url}}/chemicals"
+			},
+			"response": []
+		},
+		{
+			"name": "Update chemicals",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Metabissulfito de Potássio\" \n}"
+				},
+				"url": "{{url}}/chemicals/2"
+			},
+			"response": []
+		},
+		{
+			"name": "List chemicals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/chemicals"
+			},
+			"response": []
+		}
+	]
+}

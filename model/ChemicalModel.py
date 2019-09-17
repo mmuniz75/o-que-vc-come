@@ -10,8 +10,7 @@ class ChemicalModel(banco.Model):
 
     #site = banco.relationship('SiteModel')
 
-    def __init__(self, id, name):
-        self.id = id
+    def __init__(self, name):
         self.name = name
 
     def json(self):

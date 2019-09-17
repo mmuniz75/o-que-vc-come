@@ -14,10 +14,8 @@ class ChemicalService:
         return ChemicalModel.find_chemicals()
 
     @staticmethod
-    def create_chemical(chemical_id, name):
-        if ChemicalModel.find_chemical(chemical_id):
-            return {"message": "Já existe quimico com id {}".format(chemical_id)}, 409
-        chemical = ChemicalModel(chemical_id, name)
+    def create_chemical(name):
+        chemical = ChemicalModel(name)
         try:
             chemical.save_chemical()
 

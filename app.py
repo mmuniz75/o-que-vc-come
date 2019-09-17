@@ -22,7 +22,7 @@ def chemical():
     if request.method == 'GET':
         return jsonify(ChemicalService.get_chemicals())
     else:
-        return ChemicalService.create_chemical(request.json['id'], request.json['name'])
+        return ChemicalService.create_chemical(request.json['name'])
 
 
 @app.before_first_request
