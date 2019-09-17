@@ -25,14 +25,16 @@ for line in chemicals:
         banco.session.flush();
         model.save_chemical()
         count = count + 1
-    except Exception as e:
-        #logger.error(e, exc_info=True)
+    except IntegrityError:
         print(chemical + " already exists !")
+        banco.session.rollback()
+    except Exception as e:
+        logger.error(e, exc_info=True)
         banco.session.rollback()
 
 chemicals.close();
 
-print(str(count) + " chemicals loaded !")
+print("\n" + str(count) + " chemicals loaded !")
 
 
 
