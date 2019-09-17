@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from sql_alchemy import banco
+from gevent.pywsgi import WSGIServer
 import os
 
 from resources.ChemicalResource import ChemicalResource,ChemicalIdResource
@@ -19,4 +20,6 @@ def create_db():
 
 if __name__ == '__main__':
     banco.init_app(app)
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    #app.run(host='0.0.0.0', port=5000, debug=True)
+    http_server = WSGIServer(('',5000),app)
+    http_server.serve_forever()
