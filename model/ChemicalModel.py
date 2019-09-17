@@ -6,7 +6,7 @@ class ChemicalModel(banco.Model):
     __tablename__ = 'chemical'
 
     id = banco.Column(banco.Integer, primary_key=True)
-    name = banco.Column(banco.String(80))
+    name = banco.Column(banco.String(80), unique=True)
 
     #site = banco.relationship('SiteModel')
 

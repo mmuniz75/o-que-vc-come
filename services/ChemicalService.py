@@ -1,5 +1,11 @@
 from model.ChemicalModel import ChemicalModel
 
+from sqlalchemy.exc import IntegrityError
+
+import logging
+
+logger = logging.Logger('catch_all')
+
 
 class ChemicalService:
 
@@ -14,7 +20,11 @@ class ChemicalService:
         chemical = ChemicalModel(chemical_id, name)
         try:
             chemical.save_chemical()
-        except 'Exception':
+
+        except IntegrityError:
+            return {"message": "Quimico já cadastrado"}, 409
+        except Exception as e:
+            logger.error(e, exc_info=True)
             return {"message": "Error ao salvar quimico"}, 500
         return chemical.json(), 201
 
@@ -26,6 +36,9 @@ class ChemicalService:
 
         try:
             chemical.update_chemical(name)
-        except 'Exception':
+        except IntegrityError:
+            return {"message": "Quimico já cadastrado"}, 409
+        except Exception as e:
+            logger.error(e, exc_info=True)
             return {"message": "Error ao alterar quimico"}, 500
         return chemical.json(), 200
