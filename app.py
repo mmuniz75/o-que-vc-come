@@ -1,22 +1,34 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_restful import Api
 from sql_alchemy import banco
 from gevent.pywsgi import WSGIServer
 import os
 
-from resources.ChemicalResource import ChemicalResource,ChemicalIdResource
+from services.ChemicalService import ChemicalService
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OQVC_DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
-api.add_resource(ChemicalResource, '/chemicals')
-api.add_resource(ChemicalIdResource, '/chemicals/<int:id>')
+
+@app.route('/chemicals/<int:chemical_id>', methods=['PUT'])
+def chemical_id(chemical_id):
+    return ChemicalService.update_chemical(chemical_id, request.json['name'])
+
+
+@app.route('/chemicals', methods=['GET', 'POST'])
+def chemical():
+    if request.method == 'GET':
+        return jsonify(ChemicalService.get_chemicals())
+    else:
+        return ChemicalService.create_chemical(request.json['id'], request.json['name'])
+
 
 @app.before_first_request
 def create_db():
     banco.create_all()
+
 
 if __name__ == '__main__':
     banco.init_app(app)
