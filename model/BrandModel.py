@@ -1,9 +1,9 @@
 from sql_alchemy import db, unaccent
 
 
-class ChemicalModel(db.Model):
+class BrandModel(db.Model):
 
-    __tablename__ = 'chemical'
+    __tablename__ = 'brand'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
@@ -20,28 +20,28 @@ class ChemicalModel(db.Model):
         }
 
     @classmethod
-    def find_chemical(cls, chemical_id):
-        chemical = cls.query.filter_by(id=chemical_id).first()
-        if chemical:
-            return chemical
+    def find_brand(cls, brand_id):
+        brand = cls.query.filter_by(id=brand_id).first()
+        if brand:
+            return brand
         return None
 
     @classmethod
-    def find_chemicals(cls):
-        chemicals = cls.query.order_by(unaccent(ChemicalModel.name)).all()
-        if chemicals:
-            return [chemical.json() for chemical in chemicals]
+    def find_brands(cls):
+        brands = cls.query.order_by(unaccent(BrandModel.name)).all()
+        if brands:
+            return [brand.json() for brand in brands]
         return None
 
-    def save_chemical(self):
+    def save_brand(self):
         db.session.add(self)
         db.session.commit()
 
-    def update_chemical(self, name):
+    def update_brand(self, name):
         self.name = name
         db.session.add(self)
         db.session.commit()
 
-    def delete_chemical(self):
+    def delete_brand(self):
         db.session.delete(self)
         db.session.commit()

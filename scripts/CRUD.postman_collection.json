@@ -1,58 +1,130 @@
 {
 	"info": {
-		"_postman_id": "aa538a84-bab2-4e39-8ecb-1be986ce089f",
+		"_postman_id": "2d19488e-154a-4bf5-86f8-6174f648d673",
 		"name": "CRUD",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Create chemicals",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"Ácido Fosfórico\" \n}"
+			"name": "Chemicals",
+			"item": [
+				{
+					"name": "Create chemicals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Ácido Fosfórico\" \n}"
+						},
+						"url": "{{url}}/chemicals"
+					},
+					"response": []
 				},
-				"url": "{{url}}/chemicals"
-			},
-			"response": []
+				{
+					"name": "Update chemicals",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Metabissulfito de Potássio\" \n}"
+						},
+						"url": "{{url}}/chemicals/2"
+					},
+					"response": []
+				},
+				{
+					"name": "List chemicals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/chemicals"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Update chemicals",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"Metabissulfito de Potássio\" \n}"
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Create brands",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Nestle\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands"
+					},
+					"response": []
 				},
-				"url": "{{url}}/chemicals/2"
-			},
-			"response": []
-		},
-		{
-			"name": "List chemicals",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "{{url}}/chemicals"
-			},
-			"response": []
+				{
+					"name": "Update brands",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Terrinha\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/2"
+					},
+					"response": []
+				},
+				{
+					"name": "List brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/brands"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

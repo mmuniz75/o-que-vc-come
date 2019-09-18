@@ -1,4 +1,4 @@
-from sql_alchemy import banco
+from sql_alchemy import db
 from gevent.pywsgi import WSGIServer
 from routes import app
 
@@ -7,11 +7,11 @@ import os
 
 @app.before_first_request
 def create_db():
-    banco.create_all()
+    db.create_all()
 
 
 if __name__ == '__main__':
-    banco.init_app(app)
+    db.init_app(app)
     if 'OQVC_DEVELOP' in os.environ:
         app.run(host='0.0.0.0', port=5000, debug=True)
     else:

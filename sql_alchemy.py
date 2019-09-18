@@ -1,3 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.functions import ReturnTypeFromArgs
 
-banco = SQLAlchemy()
+
+class unaccent(ReturnTypeFromArgs):
+    pass
+
+
+db = SQLAlchemy()
