@@ -11,7 +11,8 @@ class FoodService:
 
     @staticmethod
     def get_foods():
-        return FoodModel.find_foods()
+        foods = FoodModel.find_foods()
+        return [food.json() for food in foods]
 
     @staticmethod
     def create_food(name):

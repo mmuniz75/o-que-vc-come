@@ -8,8 +8,6 @@ class ChemicalModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
 
-    #site = db.relationship('SiteModel')
-
     def __init__(self, name):
         self.name = name
 
@@ -21,17 +19,11 @@ class ChemicalModel(db.Model):
 
     @classmethod
     def find_chemical(cls, chemical_id):
-        chemical = cls.query.filter_by(id=chemical_id).first()
-        if chemical:
-            return chemical
-        return None
+        return cls.query.filter_by(id=chemical_id).first()
 
     @classmethod
     def find_chemicals(cls):
-        chemicals = cls.query.order_by(unaccent(ChemicalModel.name)).all()
-        if chemicals:
-            return [chemical.json() for chemical in chemicals]
-        return None
+        return cls.query.order_by(unaccent(ChemicalModel.name)).all()
 
     def save_chemical(self):
         db.session.add(self)

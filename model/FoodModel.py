@@ -19,17 +19,11 @@ class FoodModel(db.Model):
 
     @classmethod
     def find_food(cls, food_id):
-        food = cls.query.filter_by(id=food_id).first()
-        if food:
-            return food
-        return None
+        return cls.query.filter_by(id=food_id).first()
 
     @classmethod
     def find_foods(cls):
-        foods = cls.query.order_by(unaccent(FoodModel.name)).all()
-        if foods:
-            return [food.json() for food in foods]
-        return None
+        return cls.query.order_by(unaccent(FoodModel.name)).all()
 
     def save_food(self):
         db.session.add(self)

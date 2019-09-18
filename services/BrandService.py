@@ -9,10 +9,10 @@ logger = logging.Logger('catch_all')
 
 class BrandService:
 
-
     @staticmethod
     def get_brands():
-        return BrandModel.find_brands()
+        brands = BrandModel.find_brands()
+        return [brand.json() for brand in brands]
 
     @staticmethod
     def create_brand(name):

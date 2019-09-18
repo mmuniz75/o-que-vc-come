@@ -11,7 +11,8 @@ class ChemicalService:
 
     @staticmethod
     def get_chemicals():
-        return ChemicalModel.find_chemicals()
+        chemicals = ChemicalModel.find_chemicals()
+        return [chemical.json() for chemical in chemicals]
 
     @staticmethod
     def create_chemical(name):
