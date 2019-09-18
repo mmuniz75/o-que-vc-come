@@ -24,7 +24,7 @@ class BrandFoodChemicalModel(db.Model):
             'id_chemical': self.id_chemical
         }
 
-    def chemical(self):
+    def chemical_name(self):
         return self.chemicals.json()['name']
 
     @classmethod

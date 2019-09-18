@@ -11,11 +11,11 @@ logger = logging.Logger('catch_all')
 class BrandService:
 
     @staticmethod
-    def get_foods_by_brand(brand_id):
-        brands = BrandFoodModel.find_by_brand(brand_id)
-        if len(brands.all()) == 0:
+    def get_foods(brand_id):
+        foods = BrandFoodModel.find_by_brand(brand_id)
+        if len(foods.all()) == 0:
             return {"message": "Não existe alimentos para marca {}".format(brand_id)}, 404
-        list = [brand.food() for brand in brands]
+        list = [food.food() for food in foods]
         return jsonify(list)
 
     @staticmethod

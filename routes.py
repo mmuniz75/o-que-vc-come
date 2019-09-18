@@ -59,9 +59,9 @@ def brand_food():
         return BrandFoodService.create(request.json['brand_id'], request.json['food_id'])
 
 
-@app.route('/brands/<int:param_id>/foods')
-def foods_by_brand(param_id):
-    return BrandService.get_foods_by_brand(param_id)
+@app.route('/brands/<int:brand_id>/foods')
+def foods_by_brand(brand_id):
+    return BrandService.get_foods(brand_id)
 
 
 @app.route('/brands/<int:brand_id>/foods/<int:food_id>/chemicals/<int:chemical_id>', methods=['DELETE', 'POST'])
@@ -76,3 +76,7 @@ def brand_food_chemical(brand_id, food_id, chemical_id):
 def brand_food_chemicals():
     return jsonify(BrandFoodChemicalService.get_all())
 
+
+@app.route('/brands/<int:brand_id>/foods/<int:food_id>/chemicals')
+def chemicals_by_brand_food(brand_id, food_id):
+    return BrandFoodService.get_chemicals(brand_id, food_id)
