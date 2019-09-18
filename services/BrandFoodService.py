@@ -11,6 +11,15 @@ logger = logging.Logger('catch_all')
 class BrandFoodService:
 
     @staticmethod
+    def get_chemicals_by_barcode(bar_code):
+        relation = BrandFoodModel.find_by_bar_code(bar_code)
+        if not relation:
+            return {"message": "Codigo de barra não encontrado"}, 404
+
+        return BrandFoodService.get_chemicals(relation.id_brand, relation.id_food)
+
+
+    @staticmethod
     def get_chemicals(brand_id, food_id):
 
         relation = BrandFoodModel.find_by_id(brand_id, food_id)

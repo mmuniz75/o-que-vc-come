@@ -40,7 +40,11 @@ class BrandFoodModel(db.Model):
 
     @classmethod
     def find_by_id(cls, brand_id, food_id):
-        return cls.query.filter_by(id_brand=brand_id, id_food=food_id).first()
+        return cls.query.enable_eagerloads(False).filter_by(id_brand=brand_id, id_food=food_id).first()
+
+    @classmethod
+    def find_by_bar_code(cls, bar_code):
+        return cls.query.enable_eagerloads(False).filter_by(bar_code=bar_code).first()
 
     @classmethod
     def find_all(cls):

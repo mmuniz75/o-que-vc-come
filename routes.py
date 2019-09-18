@@ -80,3 +80,8 @@ def brand_food_chemicals():
 @app.route('/brands/<int:brand_id>/foods/<int:food_id>/chemicals')
 def chemicals_by_brand_food(brand_id, food_id):
     return BrandFoodService.get_chemicals(brand_id, food_id)
+
+
+@app.route('/brands/foods/<int:bar_code>/chemicals')
+def brand_food_bar_code_chemicals(bar_code):
+    return BrandFoodService.get_chemicals_by_barcode(bar_code)

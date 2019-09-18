@@ -33,7 +33,7 @@ class BrandFoodChemicalModel(db.Model):
 
     @classmethod
     def find_by_id(cls, brand_id, food_id, chemical_id):
-        return cls.query.filter_by(id_brand=brand_id, id_food=food_id, id_chemical=chemical_id).first()
+        return cls.query.enable_eagerloads(False).filter_by(id_brand=brand_id, id_food=food_id, id_chemical=chemical_id).first()
 
     @classmethod
     def find_all(cls):
