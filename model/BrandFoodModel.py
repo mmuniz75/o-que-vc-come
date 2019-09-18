@@ -36,7 +36,7 @@ class BrandFoodModel(db.Model):
 
     @classmethod
     def find_all(cls):
-        return cls.query.all()
+        return cls.query.enable_eagerloads(False).all()
 
     def save(self):
         db.session.add(self)
