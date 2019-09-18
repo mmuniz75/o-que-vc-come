@@ -1,4 +1,7 @@
+from sqlalchemy import text
+
 from sql_alchemy import db, unaccent
+from model import FoodModel
 
 
 class BrandFoodModel(db.Model):
@@ -25,7 +28,7 @@ class BrandFoodModel(db.Model):
 
     @classmethod
     def find_by_brand(cls, brand_id):
-        return cls.query.filter_by(id_brand=brand_id)
+        return cls.query.filter_by(id_brand=brand_id).order_by(unaccent(text("name")))
 
     @classmethod
     def find_by_id(cls, brand_id, food_id):
