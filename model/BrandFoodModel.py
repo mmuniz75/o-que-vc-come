@@ -10,7 +10,7 @@ class BrandFoodModel(db.Model):
     id_brand = db.Column(db.Integer, db.ForeignKey('brand.id'), primary_key=True)
     id_food = db.Column(db.Integer, db.ForeignKey('food.id'), primary_key=True)
 
-    bar_code = db.Column(db.Integer, nullable=False, unique=True)
+    bar_code = db.Column(db.Integer, nullable=False, unique=True, index=True)
 
     foods = db.relationship('FoodModel', lazy='joined')
 
@@ -27,7 +27,12 @@ class BrandFoodModel(db.Model):
         }
 
     def food(self):
-        return self.foods.json()
+        food = self.foods.json()
+        return {
+            'bar-code': self.bar_code,
+            'food-id': food['id'],
+            'food': food['name']
+        }
 
     @classmethod
     def find_by_brand(cls, brand_id):

@@ -42,9 +42,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\" : \"Metabissulfito de Potássio\" \n}"
+							"raw": "{\n\t\"name\" : \"Ácido Acético Glacial\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"url": "{{url}}/chemicals/2"
+						"url": "{{url}}/chemicals/1"
 					},
 					"response": []
 				},
@@ -207,14 +212,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"brand_id\": 1,\n\t\"food_id\": 1\n}",
+							"raw": "{\n\t\"bar-code\" : 823456789\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{url}}/brand-foods"
+						"url": "{{url}}/brands/3/foods/3"
 					},
 					"response": []
 				},
@@ -232,14 +237,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\" : \"Terrinha\" \n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{url}}/brand-foods/2/1"
+						"url": "{{url}}/brands/2/foods/1"
 					},
 					"response": []
 				},
@@ -248,12 +253,117 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{url}}/brand-foods"
+						"url": "{{url}}/brands/foods"
 					},
 					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Brands Foods Chemical",
+			"item": [
+				{
+					"name": "Create brands/foods/chemicals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/1/foods/1/chemicals/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove brands/foods/chemicals",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/1/foods/1/chemicals/1"
+					},
+					"response": []
+				},
+				{
+					"name": "List brands/foods/chemicals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/brands/foods/chemicals"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b29ca32e-4a21-4309-8fed-961d18af47c0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "801aca32-9028-4447-9427-8fc8d1a28109",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "List foods from brand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/2/foods"
+			},
+			"response": []
+		},
+		{
+			"name": "List chemicals from brand/food",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/1/foods/1/chemicals"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
