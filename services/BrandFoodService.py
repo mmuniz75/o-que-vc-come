@@ -9,12 +9,10 @@ logger = logging.Logger('catch_all')
 
 class BrandFoodService:
 
-
     @staticmethod
     def get_all():
         relations = BrandFoodModel.find_all()
         return [relation.json() for relation in relations]
-
 
     @staticmethod
     def create(brand_id, food_id):

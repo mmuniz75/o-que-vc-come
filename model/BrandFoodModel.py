@@ -26,10 +26,7 @@ class BrandFoodModel(db.Model):
 
     @classmethod
     def find_by_id(cls, brand_id, food_id):
-        relation = cls.query.filter_by(id_brand=brand_id, id_food=food_id).first()
-        if relation:
-            return relation
-        return None
+        return cls.query.filter_by(id_brand=brand_id, id_food=food_id).first()
 
     @classmethod
     def find_all(cls):
