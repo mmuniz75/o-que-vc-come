@@ -22,25 +22,18 @@ class BrandFoodModel(db.Model):
 
     @classmethod
     def find_by_brand(cls, brand_id):
-        brands = cls.query.filter_by(id_brand=brand_id)
-        if brands:
-            return [brand.json() for brand in brands]
-        return None
+        return cls.query.filter_by(id_brand=brand_id)
 
     @classmethod
     def find_by_id(cls, brand_id, food_id):
-        brands = cls.query.filter_by(id_brand=brand_id, id_food=food_id)
-        if brands:
-            return [brand.json() for brand in brands]
+        relation = cls.query.filter_by(id_brand=brand_id, id_food=food_id).first()
+        if relation:
+            return relation
         return None
 
     @classmethod
     def find_all(cls):
-        #brands = cls.query.order_by(unaccent(BrandFoodModel.name)).all()
-        brands = cls.query.all()
-        if brands:
-            return [brand.json() for brand in brands]
-        return None
+        return cls.query.all()
 
     def save(self):
         db.session.add(self)
