@@ -124,6 +124,136 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Foods",
+			"item": [
+				{
+					"name": "Create food",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Tapioca\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/foods"
+					},
+					"response": []
+				},
+				{
+					"name": "Update foods",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"mussarela\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/foods/2"
+					},
+					"response": []
+				},
+				{
+					"name": "List foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/foods"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Brands Foods",
+			"item": [
+				{
+					"name": "Create brands/foods",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"brand_id\": 1,\n\t\"food_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brand-foods"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove brands/foods",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Terrinha\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brand-foods/2/1"
+					},
+					"response": []
+				},
+				{
+					"name": "List brands/foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/brand-foods"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
