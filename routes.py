@@ -3,6 +3,7 @@ from services.ChemicalService import ChemicalService
 from services.BrandService import BrandService
 from services.FoodService import FoodService
 from services.BrandFoodService import BrandFoodService
+from services.BrandFoodChemicalService import BrandFoodChemicalService
 from app_flask import app
 
 
@@ -61,3 +62,17 @@ def brand_food():
 @app.route('/brands/<int:param_id>/foods')
 def foods_by_brand(param_id):
     return BrandService.get_foods_by_brand(param_id)
+
+
+@app.route('/brands/<int:brand_id>/foods/<int:food_id>/chemicals/<int:chemical_id>', methods=['DELETE', 'POST'])
+def brand_food_chemical(brand_id, food_id, chemical_id):
+    if request.method == 'DELETE':
+        return BrandFoodChemicalService.delete(brand_id, food_id, chemical_id)
+    else:
+        return BrandFoodChemicalService.create(brand_id, food_id, chemical_id)
+
+
+@app.route('/brands/foods/chemicals')
+def brand_food_chemicals():
+    return jsonify(BrandFoodChemicalService.get_all())
+

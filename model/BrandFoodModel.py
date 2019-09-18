@@ -1,7 +1,6 @@
 from sqlalchemy import text
 
 from sql_alchemy import db, unaccent
-from model import FoodModel
 
 
 class BrandFoodModel(db.Model):
