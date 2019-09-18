@@ -56,3 +56,8 @@ def brand_food():
         return jsonify(BrandFoodService.get_all())
     else:
         return BrandFoodService.create(request.json['brand_id'], request.json['food_id'])
+
+
+@app.route('/brands/<int:param_id>/foods')
+def foods_by_brand(param_id):
+    return BrandService.get_foods_by_brand(param_id)

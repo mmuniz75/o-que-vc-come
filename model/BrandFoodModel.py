@@ -8,7 +8,7 @@ class BrandFoodModel(db.Model):
     id_brand = db.Column(db.Integer, db.ForeignKey('brand.id'), primary_key=True)
     id_food = db.Column(db.Integer, db.ForeignKey('food.id'), primary_key=True)
 
-    #foods = db.relationship('FoodModel')
+    foods = db.relationship('FoodModel')
 
     def __init__(self, id_brand, id_food):
         self.id_brand = id_brand
