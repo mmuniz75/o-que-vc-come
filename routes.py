@@ -46,17 +46,17 @@ def foods():
         return FoodService.create_food(request.json['name'])
 
 
-@app.route('/brand-foods/<int:brand_id>/<int:food_id>', methods=['DELETE'])
+@app.route('/brands/<int:brand_id>/foods/<int:food_id>', methods=['DELETE', 'POST'])
 def brand_food_delete(brand_id, food_id):
-    return BrandFoodService.delete(brand_id, food_id)
-
-
-@app.route('/brand-foods', methods=['GET', 'POST'])
-def brand_food():
-    if request.method == 'GET':
-        return jsonify(BrandFoodService.get_all())
+    if request.method == 'DELETE':
+        return BrandFoodService.delete(brand_id, food_id)
     else:
-        return BrandFoodService.create(request.json['brand_id'], request.json['food_id'])
+        return BrandFoodService.create(brand_id, food_id, request.json['bar-code'])
+
+
+@app.route('/brands/foods')
+def brand_food():
+    return jsonify(BrandFoodService.get_all())
 
 
 @app.route('/brands/<int:brand_id>/foods')

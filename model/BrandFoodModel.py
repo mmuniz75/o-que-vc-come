@@ -10,16 +10,20 @@ class BrandFoodModel(db.Model):
     id_brand = db.Column(db.Integer, db.ForeignKey('brand.id'), primary_key=True)
     id_food = db.Column(db.Integer, db.ForeignKey('food.id'), primary_key=True)
 
+    bar_code = db.Column(db.Integer, nullable=False, unique=True)
+
     foods = db.relationship('FoodModel', lazy='joined')
 
-    def __init__(self, id_brand, id_food):
+    def __init__(self, id_brand, id_food, bar_code):
         self.id_brand = id_brand
         self.id_food = id_food
+        self.bar_code = bar_code
 
     def json(self):
         return {
             'id_brand': self.id_brand,
-            'id_food': self.id_food
+            'id_food': self.id_food,
+            'bar_code': self.bar_code
         }
 
     def food(self):

@@ -30,13 +30,13 @@ class BrandFoodService:
         return [relation.json() for relation in relations]
 
     @staticmethod
-    def create(brand_id, food_id):
-        relation = BrandFoodModel(brand_id, food_id)
+    def create(brand_id, food_id, bar_code):
+        relation = BrandFoodModel(brand_id, food_id, bar_code)
         try:
             relation.save()
 
         except IntegrityError:
-            return {"message": "Relacionamento já cadastrado ou alimento/marca não cadastrado"}, 409
+            return {"message": "Barcode já cadastrado ou relacionamento já cadastrado ou alimento/marca não cadastrado"}, 409
         except Exception as e:
             logger.error(e, exc_info=True)
             return {"message": "Error ao salvar relacionamento"}, 500
