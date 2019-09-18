@@ -15,7 +15,7 @@ class BrandService:
         brands = BrandFoodModel.find_by_brand(brand_id)
         if len(brands.all()) == 0:
             return {"message": "Não existe alimentos para marca {}".format(brand_id)}, 404
-        list = [brand.json() for brand in brands]
+        list = [brand.food() for brand in brands]
         return jsonify(list)
 
     @staticmethod
