@@ -2,8 +2,11 @@ from model.BrandFoodModel import BrandFoodModel
 from model.BrandFoodChemicalModel import BrandFoodChemicalModel
 from flask import jsonify
 from sqlalchemy.exc import IntegrityError
+from sql_alchemy import db
 
 import logging
+
+from services.BrandFoodChemicalService import BrandFoodChemicalService
 
 logger = logging.Logger('catch_all')
 
@@ -39,14 +42,25 @@ class BrandFoodService:
         return [relation.json() for relation in relations]
 
     @staticmethod
-    def create(brand_id, food_id, bar_code):
+    def create(brand_id, food_id, bar_code, chemicals):
+        relation = BrandFoodModel.find_by_bar_code(bar_code)
+        if relation:
+            return {"message": "Codigo de barra já cadastrado"}, 409
+
         relation = BrandFoodModel(brand_id, food_id, bar_code)
         try:
             relation.save()
 
+            for chemical in chemicals:
+                BrandFoodChemicalService.create(brand_id, food_id, chemical)
+
+            db.session.commit()
+
         except IntegrityError:
-            return {"message": "Barcode já cadastrado ou relacionamento já cadastrado ou alimento/marca não cadastrado"}, 409
+            db.session.rollback()
+            return {"message": "Relacionamento já cadastrado ou alimento/marca/quimico não cadastrado"}, 409
         except Exception as e:
+            db.session.rollback()
             logger.error(e, exc_info=True)
             return {"message": "Error ao salvar relacionamento"}, 500
         return relation.json(), 201

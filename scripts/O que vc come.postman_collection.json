@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "2d19488e-154a-4bf5-86f8-6174f648d673",
+		"name": "O que vc come",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Chemicals",
+			"item": [
+				{
+					"name": "Create chemicals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Ácido Fosfórico\" \n}"
+						},
+						"url": "{{url}}/chemicals"
+					},
+					"response": []
+				},
+				{
+					"name": "Update chemicals",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Ácido Acético Glacial\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/chemicals/1"
+					},
+					"response": []
+				},
+				{
+					"name": "List chemicals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/chemicals"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Create brands",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Nestle\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands"
+					},
+					"response": []
+				},
+				{
+					"name": "Update brands",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Terrinha\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/2"
+					},
+					"response": []
+				},
+				{
+					"name": "List brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/brands"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Foods",
+			"item": [
+				{
+					"name": "Create food",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Tapioca\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/foods"
+					},
+					"response": []
+				},
+				{
+					"name": "Update foods",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"mussarela\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/foods/2"
+					},
+					"response": []
+				},
+				{
+					"name": "List foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/foods"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Brands Foods",
+			"item": [
+				{
+					"name": "Create brands/foods",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"bar-code\" : 11111115,\n\t\"chemicals\" : [1,2,3,4,88]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/3/foods/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove brands/foods",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/2/foods/1"
+					},
+					"response": []
+				},
+				{
+					"name": "List brands/foods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/brands/foods"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Brands Foods Chemical",
+			"item": [
+				{
+					"name": "Create brands/foods/chemicals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/1/foods/1/chemicals/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove brands/foods/chemicals",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/brands/1/foods/1/chemicals/1"
+					},
+					"response": []
+				},
+				{
+					"name": "List brands/foods/chemicals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/brands/foods/chemicals"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b29ca32e-4a21-4309-8fed-961d18af47c0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "801aca32-9028-4447-9427-8fc8d1a28109",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "List foods from brand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/2/foods"
+			},
+			"response": []
+		},
+		{
+			"name": "List chemicals from brand/food",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/1/foods/1/chemicals"
+			},
+			"response": []
+		},
+		{
+			"name": "List chemicals by barcode",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/foods/123456789/chemicals"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d015fc4b-6705-40d2-98e3-a7df384f2758",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4b87ce04-76fe-4433-95e4-ad8f8370c519",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

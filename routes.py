@@ -51,7 +51,7 @@ def brand_food_delete(brand_id, food_id):
     if request.method == 'DELETE':
         return BrandFoodService.delete(brand_id, food_id)
     else:
-        return BrandFoodService.create(brand_id, food_id, request.json['bar-code'])
+        return BrandFoodService.create(brand_id, food_id, request.json['bar-code'], request.json['chemicals'])
 
 
 @app.route('/brands/foods')
