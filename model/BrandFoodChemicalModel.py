@@ -19,9 +19,9 @@ class BrandFoodChemicalModel(db.Model):
 
     def json(self):
         return {
-            'id_brand': self.id_brand,
-            'id_food': self.id_food,
-            'id_chemical': self.id_chemical
+            'brandId': self.id_brand,
+            'foodId': self.id_food,
+            'chemicalId': self.id_chemical
         }
 
     def chemical_name(self):

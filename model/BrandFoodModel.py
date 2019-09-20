@@ -21,16 +21,16 @@ class BrandFoodModel(db.Model):
 
     def json(self):
         return {
-            'id_brand': self.id_brand,
-            'id_food': self.id_food,
-            'bar_code': self.bar_code
+            'brandId': self.id_brand,
+            'foodId': self.id_food,
+            'barCode': self.bar_code
         }
 
     def food(self):
         food = self.foods.json()
         return {
-            'bar-code': self.bar_code,
-            'food-id': food['id'],
+            'barCode': self.bar_code,
+            'foodId': food['id'],
             'food': food['name']
         }
 
