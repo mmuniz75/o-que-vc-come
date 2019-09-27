@@ -5,6 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from sql_alchemy import db
 
 import logging
+import barcodenumber
 
 from services.BrandFoodChemicalService import BrandFoodChemicalService
 
@@ -43,9 +44,13 @@ class BrandFoodService:
 
     @staticmethod
     def create(brand_id, food_id, bar_code, chemicals):
+
+        if not barcodenumber.check_code_ean13(bar_code):
+            return {"message": "Codigo de barras invalido"}, 412
+
         relation = BrandFoodModel.find_by_bar_code(bar_code)
         if relation:
-            return {"message": "Codigo de barra já cadastrado"}, 409
+            return {"message": "Codigo de barras já cadastrado"}, 409
 
         relation = BrandFoodModel(brand_id, food_id, bar_code)
         try:
