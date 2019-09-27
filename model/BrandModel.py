@@ -1,4 +1,4 @@
-from sql_alchemy import db, unaccent
+from sql_alchemy import db, unaccent, lower
 
 
 class BrandModel(db.Model):
@@ -20,6 +20,10 @@ class BrandModel(db.Model):
     @classmethod
     def find_brand(cls, brand_id):
         return cls.query.filter_by(id=brand_id).first()
+
+    @classmethod
+    def find_by_name(cls, name):
+        return db.session.query(BrandModel).filter(lower(unaccent(BrandModel.name)) == lower(unaccent(name))).first()
 
     @classmethod
     def find_brands(cls):

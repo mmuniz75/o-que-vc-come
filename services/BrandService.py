@@ -1,7 +1,6 @@
 from model.BrandModel import BrandModel
 from model.BrandFoodModel import BrandFoodModel
 from flask import jsonify
-from sqlalchemy.exc import IntegrityError
 
 import logging
 
@@ -27,10 +26,12 @@ class BrandService:
     def create_brand(name):
         brand = BrandModel(name)
         try:
+
+            if BrandModel.find_by_name(name):
+                return {"message": "Marca já cadastrada"}, 409
+
             brand.save_brand()
 
-        except IntegrityError:
-            return {"message": "Marca já cadastrada"}, 409
         except Exception as e:
             logger.error(e, exc_info=True)
             return {"message": "Error ao salvar marca"}, 500

@@ -1,4 +1,4 @@
-from sql_alchemy import db, unaccent
+from sql_alchemy import db, unaccent, lower
 
 
 class FoodModel(db.Model):
@@ -20,6 +20,10 @@ class FoodModel(db.Model):
     @classmethod
     def find_food(cls, food_id):
         return cls.query.filter_by(id=food_id).first()
+
+    @classmethod
+    def find_by_name(cls, name):
+        return db.session.query(FoodModel).filter(lower(unaccent(FoodModel.name)) == lower(unaccent(name))).first()
 
     @classmethod
     def find_foods(cls):
