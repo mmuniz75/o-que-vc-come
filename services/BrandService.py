@@ -1,21 +1,13 @@
 from model.BrandModel import BrandModel
-from model.BrandFoodModel import BrandFoodModel
-from flask import jsonify
 
 import logging
 
 logger = logging.Logger('catch_all')
 
+MARCA_CADASTRADA = "Marca já cadastrada"
+
 
 class BrandService:
-
-    @staticmethod
-    def get_foods(brand_id):
-        foods = BrandFoodModel.find_by_brand(brand_id)
-        if len(foods.all()) == 0:
-            return {"message": "Não existe alimentos para marca {}".format(brand_id)}, 404
-        list = [food.food() for food in foods]
-        return jsonify(list)
 
     @staticmethod
     def get_brands():
@@ -28,7 +20,7 @@ class BrandService:
         try:
 
             if BrandModel.find_by_name(name):
-                return {"message": "Marca já cadastrada"}, 409
+                return {"message": MARCA_CADASTRADA}, 409
 
             brand.save_brand()
 
@@ -44,10 +36,16 @@ class BrandService:
             return {"message": "Não existe marca com id {}".format(brand_id)}, 404
 
         try:
+            if BrandModel.find_by_name(name):
+                return {"message": MARCA_CADASTRADA}, 409
+
             brand.update_brand(name)
-        except IntegrityError:
-            return {"message": "Marca já cadastrado"}, 409
+
         except Exception as e:
             logger.error(e, exc_info=True)
             return {"message": "Error ao alterar marca"}, 500
         return brand.json(), 200
+
+    def check_brand(name):
+        if BrandModel.find_by_name(name):
+            return {"message": "Marca já cadastrada"}, 409

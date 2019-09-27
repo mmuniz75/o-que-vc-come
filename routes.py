@@ -59,9 +59,9 @@ def brand_food():
     return jsonify(BrandFoodService.get_all())
 
 
-@app.route('/brands/<int:brand_id>/foods')
-def foods_by_brand(brand_id):
-    return BrandService.get_foods(brand_id)
+@app.route('/foods/<int:food_id>/brands')
+def foods_by_brand(food_id):
+    return FoodService.get_brands(food_id)
 
 
 @app.route('/brands/<int:brand_id>/foods/<int:food_id>/chemicals/<int:chemical_id>', methods=['DELETE', 'POST'])

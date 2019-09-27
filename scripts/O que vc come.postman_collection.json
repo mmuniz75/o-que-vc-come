@@ -348,11 +348,11 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "List foods from brand",
+			"name": "List brands from food",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{url}}/brands/2/foods"
+				"url": "{{url}}/foods/2/brands"
 			},
 			"response": []
 		},

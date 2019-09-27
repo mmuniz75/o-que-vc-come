@@ -1,11 +1,24 @@
+from flask import jsonify
+
+from model.BrandFoodModel import BrandFoodModel
 from model.FoodModel import FoodModel
 
 import logging
 
 logger = logging.Logger('catch_all')
 
+ALIMENTO_CADASTRADO = "Alimento já cadastrado"
+
 
 class FoodService:
+
+    @staticmethod
+    def get_brands(food_id):
+        brands = BrandFoodModel.find_by_food(food_id)
+        if len(brands.all()) == 0:
+            return {"message": "Não existe marcas para o alimento {}".format(food_id)}, 404
+        list = [brand.brand() for brand in brands]
+        return jsonify(list)
 
     @staticmethod
     def get_foods():
@@ -17,7 +30,7 @@ class FoodService:
         food = FoodModel(name)
         try:
             if FoodModel.find_by_name(name):
-                return {"message": "Alimento já cadastrado"}, 409
+                return {"message": ALIMENTO_CADASTRADO}, 409
 
             food.save_food()
 
@@ -33,9 +46,11 @@ class FoodService:
             return {"message": "Não existe alimento com id {}".format(food_id)}, 404
 
         try:
+            if FoodModel.find_by_name(name):
+                return {"message": ALIMENTO_CADASTRADO}, 409
+
             food.update_food(name)
-        except IntegrityError:
-            return {"message": "Alimento já cadastrado"}, 409
+
         except Exception as e:
             logger.error(e, exc_info=True)
             return {"message": "Error ao alterar alimento"}, 500
