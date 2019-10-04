@@ -45,6 +45,9 @@ class BrandFoodService:
     @staticmethod
     def create(brand_id, food_id, bar_code, chemicals):
 
+        if not chemicals or len(chemicals) == 0:
+            return {"message": "Quimicos não informados"}, 400
+
         if not barcodenumber.check_code_ean13(bar_code):
             return {"message": "Codigo de barras invalido"}, 412
 
