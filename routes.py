@@ -60,9 +60,12 @@ def brand_food():
 
 
 @app.route('/foods/<int:food_id>/brands')
-def foods_by_brand(food_id):
+def brands_by_food(food_id):
     return FoodService.get_brands(food_id)
 
+@app.route('/brands/<int:brand_id>/foods')
+def foods_by_brand(brand_id):
+    return BrandService.get_foods(brand_id)
 
 @app.route('/brands/<int:brand_id>/foods/<int:food_id>/chemicals/<int:chemical_id>', methods=['DELETE', 'POST'])
 def brand_food_chemical(brand_id, food_id, chemical_id):

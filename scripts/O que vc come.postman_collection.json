@@ -212,14 +212,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"bar-code\" : 11111115,\n\t\"chemicals\" : [1,2,3,4,88]\n}",
+							"raw": "{\n\t\"bar-code\" : \"7896282002069\",\n\t\"chemicals\" : [13,65,88]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{url}}/brands/3/foods/2"
+						"url": "{{url}}/brands/2/foods/3"
 					},
 					"response": []
 				},
@@ -353,6 +353,15 @@
 				"method": "GET",
 				"header": [],
 				"url": "{{url}}/foods/2/brands"
+			},
+			"response": []
+		},
+		{
+			"name": "List foods  from brand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/2/foods"
 			},
 			"response": []
 		},

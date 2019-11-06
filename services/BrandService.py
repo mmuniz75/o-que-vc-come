@@ -1,4 +1,7 @@
+from flask import jsonify
+
 from model.BrandModel import BrandModel
+from model.BrandFoodModel import BrandFoodModel
 
 import logging
 
@@ -8,6 +11,14 @@ MARCA_CADASTRADA = "Marca já cadastrada"
 
 
 class BrandService:
+
+    @staticmethod
+    def get_foods(brand_id):
+        foods = BrandFoodModel.find_by_brand(brand_id)
+        if len(foods.all()) == 0:
+            return {"message": "Não existe alimentos para marca {}".format(brand_id)}, 404
+        list = [food.food() for food in foods]
+        return jsonify(list)
 
     @staticmethod
     def get_brands():
