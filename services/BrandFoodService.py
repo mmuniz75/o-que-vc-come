@@ -43,7 +43,9 @@ class BrandFoodService:
             return {"message": "Não existe quimicos para alimento {} da marca {}".format(brand_id, food_id)}, 404
 
         chemical_list = [chemical.chemical_name() for chemical in chemicals]
-        return jsonify(chemical_list)
+
+        chemicals = {"bar_code": relation.bar_code, "chemicals": chemical_list}
+        return jsonify(chemicals)
 
     @staticmethod
     def get_all():
