@@ -21,7 +21,7 @@ class BrandFoodChemicalService:
             relation.save()
 
         except IntegrityError:
-            return {"message": "Relacionamento já cadastrado ou alimento/marca/quimico não cadastrado"}, 409
+            return {"message": "Item já cadastrado"}, 409
         except Exception as e:
             logger.error(e, exc_info=True)
             return {"message": "Error ao salvar relacionamento"}, 500

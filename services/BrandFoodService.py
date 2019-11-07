@@ -15,6 +15,14 @@ logger = logging.Logger('catch_all')
 class BrandFoodService:
 
     @staticmethod
+    def get_foods_brand_by_barcode(bar_code):
+        relation = BrandFoodModel.find_by_bar_code(bar_code)
+        if not relation:
+            return {"message": "Codigo de barra não encontrado"}, 404
+
+        return relation.json();
+
+    @staticmethod
     def get_chemicals_by_barcode(bar_code):
         relation = BrandFoodModel.find_by_bar_code(bar_code)
         if not relation:
@@ -66,7 +74,7 @@ class BrandFoodService:
 
         except IntegrityError:
             db.session.rollback()
-            return {"message": "Relacionamento já cadastrado ou alimento/marca/quimico não cadastrado"}, 409
+            return {"message": "Item já cadastrado"}, 409
         except Exception as e:
             db.session.rollback()
             logger.error(e, exc_info=True)

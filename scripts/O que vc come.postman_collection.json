@@ -379,7 +379,16 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{url}}/brands/foods/123456789/chemicals"
+				"url": "{{url}}/brands/foods/7896034300789/chemicals"
+			},
+			"response": []
+		},
+		{
+			"name": "List by barcode",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/brands/foods/3869799000458"
 			},
 			"response": []
 		}
