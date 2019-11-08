@@ -6,17 +6,19 @@ from sql_alchemy import db
 from sqlalchemy.exc import IntegrityError
 
 import logging
+import os
 
 logger = logging.Logger('catch_all')
 
-engine = create_engine('postgresql://postgres:postgres@localhost:5432/oqvc')
+#engine = create_engine('postgresql://postgres:postgres@localhost:5432/oqvc')
+engine = create_engine(os.environ['OQVC_DATABASE_URL'])
 Session = sessionmaker(bind=engine)
 db.session = Session()
 
 db.Model = declarative_base()
 
 count = 0
-chemicals = open("quimicos.txt", encoding="utf-8", newline=None)
+chemicals = open(os.environ['IMPORT_FILE'], encoding="utf-8", newline=None)
 
 for line in chemicals:
     chemical = line.replace("\n", "")
