@@ -16,6 +16,9 @@ class BrandFoodService:
 
     @staticmethod
     def get_foods_brand_by_barcode(bar_code):
+        if not barcodenumber.check_code_ean13(bar_code):
+            return {"message": "Codigo de barras invalido"}, 412
+
         relation = BrandFoodModel.find_by_bar_code(bar_code)
         if not relation:
             return {"message": "Codigo de barra não encontrado"}, 404
@@ -24,6 +27,9 @@ class BrandFoodService:
 
     @staticmethod
     def get_chemicals_by_barcode(bar_code):
+        if not barcodenumber.check_code_ean13(bar_code):
+            return {"message": "Codigo de barras invalido"}, 412
+
         relation = BrandFoodModel.find_by_bar_code(bar_code)
         if not relation:
             return {"message": "Codigo de barra não encontrado"}, 404
