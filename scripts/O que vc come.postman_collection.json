@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\" : \"Ácido Fosfórico\" \n}"
+							"raw": "{\n\t\"names\" : [\"ab_quim1\",\n\t           \"ab_quim2\",\n\t           \"ab_quim3\" ] \n}"
 						},
 						"url": "{{url}}/chemicals"
 					},
