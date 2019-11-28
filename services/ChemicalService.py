@@ -1,5 +1,6 @@
+from flask import jsonify
 from model.ChemicalModel import ChemicalModel
-
+from sql_alchemy import db
 from sqlalchemy.exc import IntegrityError
 
 import logging
@@ -15,17 +16,28 @@ class ChemicalService:
         return [chemical.json() for chemical in chemicals]
 
     @staticmethod
-    def create_chemical(name):
-        chemical = ChemicalModel(name)
-        try:
-            chemical.save_chemical()
+    def create_chemical(names):
 
-        except IntegrityError:
-            return {"message": "Quimico já cadastrado"}, 409
+        try:
+            for name in names:
+                chemical = ChemicalModel(name)
+                chemical.save_chemical()
+
+            db.session.commit()
+
+        except IntegrityError as err:
+            db.session.rollback()
+            return {"message": "Quimico {} já cadastrado".format(ChemicalService.get_field_name(err.orig.args[0]))}, 409
         except Exception as e:
+            db.session.rollback()
             logger.error(e, exc_info=True)
             return {"message": "Error ao salvar quimico"}, 500
-        return chemical.json(), 201
+        return {"message": "Quimicos adicionados"}, 201
+
+    @staticmethod
+    def get_field_name(erro):
+        start = erro.index("(name)=(") + 8
+        return erro[start:erro.index(")", start)]
 
     @staticmethod
     def update_chemical(chemical_id, name):

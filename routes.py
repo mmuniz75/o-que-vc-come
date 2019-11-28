@@ -17,7 +17,7 @@ def chemicals():
     if request.method == 'GET':
         return jsonify(ChemicalService.get_chemicals())
     else:
-        return ChemicalService.create_chemical(request.json['name'])
+        return ChemicalService.create_chemical(request.json['names'])
 
 
 @app.route('/brands/<int:param_id>', methods=['PUT'])

@@ -27,7 +27,7 @@ class ChemicalModel(db.Model):
 
     def save_chemical(self):
         db.session.add(self)
-        db.session.commit()
+
 
     def update_chemical(self, name):
         self.name = name
