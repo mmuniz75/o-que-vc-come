@@ -15,6 +15,6 @@ if __name__ == '__main__':
     if 'OQVC_DEVELOP' in os.environ:
         app.run(host='0.0.0.0', port=5000, debug=True)
     else:
-        # http_server = WSGIServer(('', 5000), app)
-        # http_server.serve_forever()
-        app.run()
+        http_server = WSGIServer(('', 5000), app)
+        http_server.serve_forever()
+
