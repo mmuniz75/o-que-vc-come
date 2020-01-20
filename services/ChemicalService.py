@@ -16,12 +16,12 @@ class ChemicalService:
         return [chemical.json() for chemical in chemicals]
 
     @staticmethod
-    def create_chemical(names):
+    def create_chemical(chemicals):
 
         try:
-            for name in names:
-                chemical = ChemicalModel(name)
-                chemical.save_chemical()
+            for chemical in chemicals:
+                chemicalModel = ChemicalModel(chemical['name'], chemical['url'])
+                chemicalModel.save_chemical()
 
             db.session.commit()
 

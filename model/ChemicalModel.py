@@ -7,14 +7,17 @@ class ChemicalModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
+    url = db.Column(db.String)
 
-    def __init__(self, name):
+    def __init__(self, name, url):
         self.name = name
+        self.url = url
 
     def json(self):
         return {
             'id': self.id,
             'name': self.name,
+            'url': self.url
         }
 
     @classmethod
