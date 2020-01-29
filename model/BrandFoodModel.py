@@ -31,16 +31,16 @@ class BrandFoodModel(db.Model):
         brand = self.brands.json()
         return {
             'barCode': self.bar_code,
-            'brandId': brand['id'],
-            'brand': brand['name']
+            'id': brand['id'],
+            'name': brand['name']
         }
 
     def food(self):
         food = self.foods.json()
         return {
             'barCode': self.bar_code,
-            'foodId': food['id'],
-            'food': food['name']
+            'id': food['id'],
+            'name': food['name']
         }
 
     @classmethod
