@@ -10,13 +10,14 @@ def create_db():
     db.create_all()
 
 
+db.init_app(app)
+
 if __name__ == '__main__':
-    db.init_app(app)
-    app.run(host='0.0.0.0', port=5000, debug=True)
-    ''''if 'OQVC_DEVELOP' in os.environ:
+    if 'OQVC_DEVELOP' in os.environ:
         app.run(host='0.0.0.0', port=5000, debug=True)
+    ''''    
     else:
         http_server = WSGIServer(('', 5000), app)
         http_server.serve_forever()
-    '''''
+    '''
 
